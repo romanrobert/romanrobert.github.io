@@ -4,10 +4,9 @@ const projects = [
     title: "Urbanlab",
     description:
       "Urbanlab is a platform that connects urban designers and developers with each other and with the public. We are building a platform that allows urban designers to create and share their designs, and urban developers to use them in their projects.",
-    coverImage:
-      "https://images.unsplash.com/photo-1531297484001-80022131f5a1?w=400&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8dGVjaHxlbnwwfDB8MHx8fDA%3D",
+    coverImage: "/public/assets/urbanlab-img-main.png",
     projectImages: [
-      "https://images.unsplash.com/photo-1597218041286-e8b6048d48c4?w=400&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8dGVoY25vbG9neXxlbnwwfHwwfHx8MA%3D%3D",
+      "/public/assets/urbanlab-img-project.png",
       "https://plus.unsplash.com/premium_photo-1664391952278-9a0be5649abb?w=400&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8dGVoY25vbG9neXxlbnwwfHwwfHx8MA%3D%3D",
     ],
     technologies: ["HTML", "CSS", "JS", "Responsive Design", "Tailwind CSS"],

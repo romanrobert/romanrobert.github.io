@@ -16,9 +16,9 @@ import Button from "../Button.astro";
     <ul class="project-list">
         {
             projects.map((project) => (
-            <img src=`${project.coverImage}` alt="project cover image" />
+            
                 <li class="project-item">
-                     
+                     <img src=`${project.coverImage}` alt="project cover image" />
                     <div class="project-info">
                         <h2 class="project-title">{project.title}</h2>
                         <ul class="project-tehcnologies">
@@ -97,12 +97,12 @@ img {
     height: 65vh;
     aspect-ratio: 1/1;
     opacity: 0;
-    transition: opacity 500ms ease;
+    transition: opacity 1s ease;
     object-fit: cover;
     border-radius: 0rem 4rem 0rem 0rem;
 }
 
-li:hover .project-list img {
+li:hover img {
     opacity: 1;
 }
 </style>

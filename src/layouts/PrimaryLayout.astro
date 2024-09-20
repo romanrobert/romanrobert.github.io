@@ -5,7 +5,6 @@ import Navigation from "../components/Navigation.astro";
 import PageHeader from "../components/PageHeader.astro";
 import Button from "../components/Button.astro";
 import "../styles/style.css";
-import ViewTransitions from "astro/components/ViewTransitions.astro";
 
 ---
 
@@ -19,12 +18,12 @@ import ViewTransitions from "astro/components/ViewTransitions.astro";
 		<link rel="preconnect" href="https://fonts.googleapis.com">
 		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 		<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,300;0,400;0,500;0,600;0,700;1,700&display=swap" rel="stylesheet">
-		<ViewTransitions />
+		
 		<title>{title}</title>
 	</head>
 	<body>
 		<Backgorund />
-        <Navigation transition:persist/>
+        <Navigation />
         
         <div class="wrapper">
             <PageHeader title={title} />
