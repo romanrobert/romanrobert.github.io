@@ -1,0 +1,32 @@
+---
+import Background from "../Background.astro";
+---
+
+<div>
+    <Background />
+    <p>Loading...</p>
+</div>
+
+
+
+<style>
+    div {
+        position: absolute;
+        inset: 0;
+        z-index: 9999;
+        background-color:#171717;
+        min-height: 100vh;
+        display: grid;
+        place-items: center;
+    }
+</style>
+
+
+<script>
+    
+    document.addEventListener("DOMContentLoaded", () => {
+        const preloader = document.querySelector("div");
+        preloader.style.display = "none";
+    }); 
+     
+</script>

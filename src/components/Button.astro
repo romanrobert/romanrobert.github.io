@@ -1,0 +1,88 @@
+---
+const {type="button", variant="primary", icon = null, href=null} = Astro.props;
+---
+
+<a
+  type={type}
+  class={`btn ${variant} ${icon ? 'btn-with-icon' : ''}`}
+  href={href}
+>
+{icon && <span class="btn-icon" set:html={icon}></span>}
+<span class="btn-bg"></span>
+  <slot />
+</a>
+
+
+
+
+<style>
+
+  
+a {
+  --easing: cubic-bezier(0.65,0.05,0.36,1);
+  --neutral-100: #eeeeee;
+  --neutral-900: #171717;
+  
+  color: white;
+  position: relative;
+  display: block;
+  overflow: hidden;
+  padding: .75rem 1.5rem;
+  border-radius: 100vw;
+  font-family: inherit;
+  text-align: center;
+  text-decoration: none;
+  border: 1px solid white;
+}
+a span {
+  position: absolute;
+  display: block;
+  width: 0;
+  height: 0;
+  border-radius: 50%;
+  background-color: var(--neutral-100);
+  -webkit-transition: width 0.5s var(--easing), height 0.5s var(--easing);
+  transition: width 0.5s var(--easing), height 0.5s var(--easing);
+  -webkit-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
+  z-index: -1;
+}
+a:hover {
+  color:var(--neutral-900);
+}
+a:hover span {
+  width: 225%;
+  height: 562.5px;
+}
+a:active {
+  background-color: #00c4ad;
+}
+    
+</style>
+
+
+<script>
+  (() => {
+  const buttons = document.querySelectorAll(".btn");
+
+  buttons.forEach(button => {
+    ["mouseenter", "mouseout"].forEach(evt => {
+      button.addEventListener(evt, e => {
+        const parentOffset = button.getBoundingClientRect(),
+              relX = e.pageX - parentOffset.left,
+              relY = e.pageY - parentOffset.top;
+
+        const span = button.querySelector("span");
+
+        if (span) {
+          span.style.top = `${relY}px`;
+          span.style.left = `${relX}px`;
+        }
+      });
+    });
+  });
+})();
+
+
+
+</script>

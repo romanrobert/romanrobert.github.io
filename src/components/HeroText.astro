@@ -1,0 +1,74 @@
+<h1></h1>
+
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+    const theLetters = "abcdefghijklmnopqrstuvwxyz#%&^+=-"; // Customize letters
+    const words = ["Frontend Developer", "Web Enthuziast", "Creative"]; // Words array
+    let speed = 1; // ms per frame
+    const increment = 2; // frames per step, must be > 2
+    const delay = 1000; // Delay of 1 second before restarting the next word animation
+
+    let wordIndex = 0; // Tracks current word in array
+    let ctnt = words[wordIndex];
+    let clen = ctnt.length;
+    let si = 0;
+    let stri = 0;
+    let block = "";
+    let fixed = "";
+
+   
+      
+     
+    
+    // Call self x times, whole function wrapped in setTimeout
+    const rustle = (i) => {
+      setTimeout(() => {
+        if (i > 0) {
+          rustle(i - 1);
+          nextFrame(i);
+          si++;
+        } else {
+          // Move to next word after delay when animation is finished
+          setTimeout(() => {
+            wordIndex = (wordIndex + 1) % words.length; // Loop through words array
+            ctnt = words[wordIndex];
+            clen = ctnt.length;
+            si = 0;
+            stri = 0;
+            fixed = "";
+            rustle(clen * increment + 1); // Restart rustle for new word
+          }, delay); // Delay before starting the next word animation
+        }
+      }, speed);
+    };
+
+    const nextFrame = (pos) => {
+      block = ""; // Reset block each frame
+      for (let i = 0; i < clen - stri; i++) {
+        const num = Math.floor(theLetters.length * Math.random()); // Random number
+        const letter = theLetters.charAt(num); // Get random letter
+        block += letter;
+      }
+      if (si === increment - 1) {
+        stri++;
+      }
+      if (si === increment) {
+        // Add a letter every speed*increment ms
+        fixed += ctnt.charAt(stri - 1);
+        si = 0;
+      }
+      document.querySelector("h1").innerHTML = fixed + block;
+    };
+
+    rustle(clen * increment + 1); // Start the rustle animation
+  });
+</script>
+
+
+
+<style>
+    h1 {
+        font-size: clamp(2.5rem, 5vw, 6rem);
+        text-align: center;
+    }
+</style>

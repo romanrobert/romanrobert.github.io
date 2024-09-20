@@ -1,0 +1,31 @@
+---
+const {class: className} = Astro.props;
+---
+
+<button class:list={[className, "btn"]} >
+    <span>Menu</span>
+    <img class="btn" src="/assets/menu-icon.svg" alt="Menu icon" />
+</button>
+
+
+<style>
+   
+    button {
+        display: flex;
+        gap: .5rem;
+        background-color: transparent;
+        border: none;
+        color: #eeeeee;
+        font-family: inherit;
+        cursor: pointer;
+
+        span {
+            display: block;
+            font-family: inherit;
+            font-weight: 600;
+        }
+    }
+
+</style>
+  
+

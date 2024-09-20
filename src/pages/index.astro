@@ -1,0 +1,101 @@
+---
+import Background from "../components/Background.astro";
+import HeroText from "../components/HeroText.astro";
+import Navigation from "../components/Navigation.astro";
+import PreloaderPannel from "../components/preloader/PreloaderPannel.astro";
+import Button from "../components/Button.astro";
+import "../styles/style.css"
+import Cursor from "../components/cursor.astro";
+
+
+const icon = `<svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M8.00032 3.33341L8.00033 12.6667M8.00033 12.6667L12.667 8.00008M8.00033 12.6667L3.33366 8.00008" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>`
+
+
+
+---
+
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+		<meta name="viewport" content="width=device-width" />
+		<meta name="generator" content={Astro.generator} />
+		<link rel="preconnect" href="https://fonts.googleapis.com">
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+		<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,300;0,400;0,500;0,600;0,700;1,700&display=swap" rel="stylesheet">
+		<title>Astro</title>
+	</head>
+	<body>
+		<Cursor />
+		<Background />
+		<Navigation/>
+		<div class="wrapper">
+			<main>
+				<section class="hero">
+					<p class="author">ROMAN ROBERT</p>
+					<HeroText />
+					<div class="button-container">
+						<Button 
+							type="button"
+							variant="primary"
+							href="/projects"
+							>Projects</Button
+						/>
+						<Button 
+							type="button"
+							variant="primary"
+							icon={icon}
+
+							>Resume</Button
+						/>
+
+						
+					</div>
+				</section>
+			</main>
+		</div>
+		
+		
+	</body>
+</html>
+
+
+<style>	
+	main {
+		display: grid;
+		min-height: 80vh;
+
+	}
+
+	.hero {
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		flex-direction: column;
+		gap: 1rem
+	}
+	
+
+	.author {
+		font-size: 0.75rem;
+
+
+
+
+		text-align: center;
+	}
+
+	
+	.button-container {
+		display: flex;
+		gap: 0.5rem;
+		justify-content: center;
+		margin-top: 2rem;
+	}
+		
+
+	
+</style>
+

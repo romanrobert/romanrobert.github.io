@@ -1,0 +1,96 @@
+---
+import PrimaryLayout from "../../layouts/PrimaryLayout.astro";
+import projects from "../../projectsData";
+import Button from "../../components/Button.astro";
+
+export function getStaticPaths() {
+    return projects.map((project) => ({
+        params: { slug: project.title.toLowerCase().replaceAll(" ", "-") },
+        props: { project },
+    }));
+}
+
+const { project } = Astro.props;
+---
+
+
+<PrimaryLayout title={project.title} >
+    <div class="img-container">
+        <img src={project.coverImage} alt="project cover image" />
+        <div class="project-tech">
+            <ul>
+                {
+                    project.technologies.slice(0, 5).map((tech) => (
+                        <li class="tech">{tech}</li>
+                    ))
+                }
+            </ul>
+            <p class="year">{project.projectDate}</p>
+        </div>
+    </div>
+    <section class="project-description">
+        <p class="project-description-text">
+            {project.description}
+        </p>
+        <Button
+            type="button"
+            href=`${project.projectUrl}`
+        >See Project</Button>
+    </section>
+
+    <section class="feature-images">
+        {
+            project.projectImages.map((image) => (
+                <img src={image} alt="project feature image"  />
+            ))
+        }
+    </section>
+   
+</PrimaryLayout>
+
+
+
+<style>
+    img {
+        width: 100%;
+        aspect-ratio: 16/9;
+        object-fit: cover;
+        margin-top: 6.25rem;
+        
+    }
+
+    ul {
+        display: flex;
+        gap: 0.5rem;
+    }
+
+    .project-tech {
+        display: flex;
+        justify-content: space-between;
+        margin-top: 1.5rem;
+    }
+
+    .project-description {
+        margin-top: 6.25rem;
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-end;
+        
+        p {
+            max-width: 65ch;
+        }
+    }
+
+
+
+    li {
+        list-style: none
+    }
+
+    .feature-images {
+        display: grid;
+        grid-template-columns: repeat(2,1fr);
+        padding-bottom: 6.25rem;
+        gap: 1.5rem;
+    }
+</style>

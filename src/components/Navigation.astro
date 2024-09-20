@@ -1,0 +1,211 @@
+---
+import Logo from "./Logo.astro";
+import NavigationButton from "./navigation/NavigationButton.astro";
+import Background from "./Background.astro";
+const {class: className} = Astro.props;
+---
+
+
+<header>
+    <Logo />
+    <NavigationButton class:list={["nav-btn", className]} />
+
+    <nav>
+      <Background className="bg"/>
+      <button class="close-btn">
+        <span>Close</span>
+        <img class="btn" src="/assets/menu-icon.svg" alt="Menu icon" />
+    </button>
+      <ul>
+        <li class="nav-item"><a href="/">Home</a></li>
+        <li class="nav-item"><a href="/about">About</a></li>
+        <li class="nav-item"><a href="/projects">Projects</a></li>
+        <li class="nav-item"><a href="/contact">Contact</a></li>
+      </ul>
+
+      <p class="contact-p">If you want to collaborate on a short or longterm projects feel free to say <a class="email" href="mailto:hello@romanrobert.com">hello@romanrobert.com</a></p>
+    </nav>
+</header>
+
+
+<style>
+  
+  header {
+
+    --easing: cubic-bezier(0.19, 1, 0.22, 1);
+    position: sticky;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: 4rem;
+    padding-inline: clamp(1rem, 5vw, 6rem);
+    margin: auto;
+    z-index: 20000;
+    
+  }
+
+
+
+  nav {
+    position: absolute;
+    inset: 0;
+    min-height: 100vh;
+    background-color: #171717;
+    padding-inline: clamp(1rem, 5vw, 6rem);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    transform: translateY(-100%);
+    transition: all 500ms var(--easing);
+    
+  }
+
+  button {
+    position: absolute;
+    right: clamp(1rem, 5vw, 6rem);
+    top: 4rem;
+        display: flex;
+        gap: .5rem;
+        background-color: transparent;
+        border: none;
+        color: #eeeeee;
+        font-family: inherit;
+        cursor: pointer;
+
+        span {
+            display: block;
+            font-family: inherit;
+            font-weight: 600;
+        }
+    }
+
+  ul {
+    --scale: 0;
+    padding-bottom: 2.5rem;
+    position: relative;
+    width: 100%;
+  }
+
+  ul:after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    height: 1px;
+    width: 100%;
+    background-color: #D0D4D8;
+    opacity: 0.5;
+    transform:  scaleX(var(--scale));
+    transform-origin: left;
+    transition: transform 1000ms var(--easing);
+  }
+
+  ul li {
+    list-style-type: none;
+    padding: 0rem;
+    margin: 0px;
+  }
+
+  a { 
+    text-decoration: none;
+    color: inherit;
+    font-size: clamp(3rem, 5vw, 6rem);
+    font-weight: 700;
+    line-height: 1;
+    text-transform: uppercase;
+  }
+
+  p.contact-p {
+    margin-top: 1.5rem;
+    align-self: flex-end;
+    font-size: 0.75rem;
+  }
+
+  p .email {
+    font-size: inherit;
+    text-transform: inherit;
+    text-decoration: underline;
+  }
+
+  .nav-btn, li, p.contact-p {
+    transform: translateY(2rem);
+    opacity: 0;
+    transition: all 1000ms var(--easing);
+  } 
+</style>
+
+
+<script>
+
+
+ 
+  const nav = document.querySelector("nav");
+  const navBtn = document.querySelector(".nav-btn");
+  const links = document.querySelectorAll(".nav-item");
+
+  const navigationLinks = document.querySelectorAll("a")
+  const p = document.querySelector(".contact-p");
+  const ul =  document.querySelector("ul");
+  const closeBtn = document.querySelector(".close-btn");
+
+  
+
+  const elements = [...links, p];
+
+  const staggerItems = (elements) => {
+    elements.forEach((el, i) => {
+      setTimeout(() => {
+        el.style.opacity = 1;
+        el.style.transform = "translateY(0)";
+      }, i * 200);
+    })
+  }
+
+  const staggerItemsOut = (elements) => {
+    elements.forEach((el, i) => {
+      setTimeout(() => {
+        el.style.opacity = 0;
+        el.style.transform = "translateY(2rem)";
+      }, i * 200);
+    })
+  }
+
+  const animateUnderline = () => {
+        ul.style.setProperty("--scale", "1"); 
+    }
+
+  const setUnderlineScale = () => {
+        ul.style.setProperty("--scale", "0"); 
+    }
+  
+  const closeMenu = () => {
+    staggerItemsOut(elements);
+    setUnderlineScale();
+    setTimeout(() => {
+      nav.style.transform = "translateY(-100%)";
+    }, 1500)
+    console.log("clicked")
+  }
+
+  navBtn.addEventListener("click", () => {
+    nav.style.transform = "translateX(0)";
+    setTimeout(() => {
+      staggerItems(elements);
+      animateUnderline();
+    }, 250)
+    console.log("clicked")
+  })
+
+
+   navigationLinks.forEach((link) => {
+    link.addEventListener('click', (event) => {
+     
+     
+      closeMenu(); 
+     // Match the animation delay
+    });
+  });
+
+  closeBtn.addEventListener("click", closeMenu)
+
+</script>
