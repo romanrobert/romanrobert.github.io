@@ -138,7 +138,7 @@ const {class: className} = Astro.props;
 <script>
 
 
- 
+  const body = document.querySelector("body")
   const nav = document.querySelector("nav");
   const navBtn = document.querySelector(".nav-btn");
   const links = document.querySelectorAll(".nav-item");
@@ -183,12 +183,15 @@ const {class: className} = Astro.props;
     setUnderlineScale();
     setTimeout(() => {
       nav.style.transform = "translateY(-100%)";
+      body.style.overflow = "auto";
+      
     }, 700)
     console.log("clicked")
   }
 
   navBtn.addEventListener("click", () => {
     nav.style.transform = "translateX(0)";
+    body.style.overflow = "hidden";
     setTimeout(() => {
       staggerItems(elements);
       animateUnderline();

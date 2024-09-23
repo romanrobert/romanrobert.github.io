@@ -33,6 +33,7 @@ a {
   border-radius: 100vw;
   text-align: center;
   text-decoration: none;
+  text-wrap: nowrap;
   font-family: inherit;
   font-weight: 500;
   color: white;
@@ -73,6 +74,7 @@ a:active {
 <script>
   (() => {
   const buttons = document.querySelectorAll(".btn");
+  
 
   buttons.forEach(button => {
     ["mouseenter", "mouseout"].forEach(evt => {
@@ -81,7 +83,7 @@ a:active {
               relX = e.pageX - parentOffset.left,
               relY = e.pageY - parentOffset.top;
 
-        const span = button.querySelector("span");
+        const span = button.querySelector(".btn-bg");
 
         if (span) {
           span.style.top = `${relY}px`;
