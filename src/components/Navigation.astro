@@ -104,6 +104,9 @@ const {class: className} = Astro.props;
     list-style-type: none;
     padding: 0rem;
     margin: 0px;
+    
+    
+    
   }
 
   a { 
@@ -113,6 +116,14 @@ const {class: className} = Astro.props;
     font-weight: 700;
     line-height: 1;
     text-transform: uppercase;
+    color: #D0D4D8;
+    transition: all 1000ms var(--easing);
+    
+    
+  }
+
+  li a {
+    letter-spacing: -4px;
   }
 
   p.contact-p {
@@ -132,6 +143,16 @@ const {class: className} = Astro.props;
     opacity: 0;
     transition: all 1000ms var(--easing);
   } 
+
+  li a:hover
+  {
+    letter-spacing: normal;
+    color: white;
+  }
+
+  li a:hover li a:not(:hover) {
+    scale: 0.5;
+  }
 </style>
 
 

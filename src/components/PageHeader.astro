@@ -54,15 +54,15 @@ const {title} = Astro.props;
         title.style.opacity = "1";
     }
 
-    const animateUnderline = () => {
-        header.style.setProperty("--scale", "1"); 
+    const animateUnderline = (el) => {
+        el.style.setProperty("--scale", "1"); 
     }
  
     document.addEventListener("DOMContentLoaded", () => {
         
         animateTitle();
         setTimeout(() => {
-            animateUnderline();
+            animateUnderline(header);
         }, 50)
         
     });
